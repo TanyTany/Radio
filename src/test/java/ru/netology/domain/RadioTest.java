@@ -10,8 +10,8 @@ public class RadioTest {
     public void shouldChangeStation() {
         Radio radio = new Radio();
         assertEquals(0, radio.getCurrentStation());
-        radio.setCurrentStation(9);
-        assertEquals(9, radio.getCurrentStation());
+        radio.setCurrentStation(10);
+        assertEquals(10, radio.getCurrentStation());
 
     }
 
@@ -26,8 +26,8 @@ public class RadioTest {
  /// вызов метода должен приводить к переключению на одну радиостанцию
     @Test
     public void shouldNextStationWithLastStation() {
-        Radio radio = new Radio();
-        radio.setCurrentStation(9);
+        Radio radio = new Radio(10);
+        radio.setCurrentStation(10);
         int expected = 0;
         int actual = radio.changeNextStation();
         assertEquals(expected, actual);
@@ -35,9 +35,9 @@ public class RadioTest {
     }
     @Test
     public void shouldNextStationWithFirstStation() {
-        Radio radio = new Radio();
-        radio.setCurrentStation(0);
-        int expected = 1;
+        Radio radio = new Radio(10);
+        radio.setCurrentStation(1);
+        int expected = 2;
         int actual = radio.changeNextStation();
         assertEquals(expected, actual);
 
@@ -45,8 +45,8 @@ public class RadioTest {
 
     @Test
     public void shouldPrevStationWithLastStation() {
-        Radio radio = new Radio();
-        radio.setCurrentStation(0);
+        Radio radio = new Radio(10);
+        radio.setCurrentStation(10);
         int expected = 9;
         int actual = radio.changePrevStation();
         assertEquals(expected, actual);
@@ -54,28 +54,29 @@ public class RadioTest {
     }
 
     @Test
-    public void shouldPrevStationWnithFirstStation() {
-        Radio radio = new Radio();
-        radio.setCurrentStation(7);
-        int expected = 6;
+    public void shouldPrevStationWithFirstStation() {
+        Radio radio = new Radio(10);
+        radio.setCurrentStation(0);
+        int expected = 10;
         int actual = radio.changePrevStation();
         assertEquals(expected, actual);
 
     }
 
     ///Клиент должен иметь возможность увеличивать и уменьшать уровень громкости звука
+
     @Test
-    public void shouldNextVolumeWhithLastStation() {
+    public void shouldNextVolumeWithLastStation() {
         Radio radio = new Radio();
-        radio.setCurrentVolume(10);
-        int expected = 10;
+        radio.setCurrentVolume(100);
+        int expected = 100;
         int actual = radio.changeNextVolume();
         assertEquals(expected, actual);
 
     }
 
     @Test
-    public void shouldNextVolumeWhithFirstStation() {
+    public void shouldNextVolumeWithFirstStation() {
         Radio radio = new Radio();
         radio.setCurrentVolume(0);
         int expected = 1;
@@ -87,8 +88,8 @@ public class RadioTest {
     @Test
     public void shouldPrevVolumeWithLastStation() {
         Radio radio = new Radio();
-        radio.setCurrentVolume(10);
-        int expected = 9;
+        radio.setCurrentVolume(100);
+        int expected = 99;
         int actual = radio.changePrevVolume();
         assertEquals(expected, actual);
 
